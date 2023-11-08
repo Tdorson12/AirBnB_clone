@@ -2,6 +2,7 @@
 
 import uuid
 from datetime import datetime
+from models import storage
 
 
 class BaseModel:
@@ -35,6 +36,11 @@ class BaseModel:
                 Set update_at with the value of created_at
             """
             self.updated_at = datetime.utcnow()
+            """
+            if it’s a new instance (not from a dictionary representation)
+            add a call to the method new(self) on storage
+            """
+            storage.new(self)
 
     def __str__(self):
         """
@@ -47,6 +53,8 @@ class BaseModel:
         Update the updated_at to the current datetime
         """
         updated_at = datetime.utcnow()
+        """ call save(self) method of storage """
+        storage.save()
 
     def to_dict(self):
         """
