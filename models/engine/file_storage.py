@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-from models.base_model import BaseModel
 import json
 
 
@@ -32,6 +31,7 @@ class FileStorage:
         """
         serializes __objects to the JSON file (path: __file_path)
         """
+        from models import storage
         serializes_objects = {}
         for key, obj in self.__objects.items():
             serializes_objects[key] = obj.to_dict()
@@ -45,13 +45,15 @@ class FileStorage:
         (only if the JSON file (__file_path) exists; otherwise, do nothing.
         If the file doesn’t exist, no exception should be raised)
         """
+        from models.base_model import BaseModel
         try:
             with open(self.__file_path, 'r', encoding='utf-8') as file:
                 loaded_objects = json.load(file)
                 for key, value in loaded_objects.items():
                     class_name, obj_id = key.split(".")
-                    obj = globals()[class_name](**value)
-                    self.__objects[key] = obj
+                    if class_name == "BaseModel":
+                        obj = BaseModel(**value)
+                        self.__objects[key] = obj
         except FileNotFoundError:
             pass
 

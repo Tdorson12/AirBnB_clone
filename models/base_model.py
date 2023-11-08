@@ -60,13 +60,10 @@ class BaseModel:
         """
         Return dictionary representation of BaseModel class.
         """
-        self.__dict__["id"] = self.id
-        self.__dict__["created_at"] = self.created_at.isoformat()
-        self.__dict__["updated_at"] = self.updated_at.isoformat()
-        self.__dict__["__class__"] = self.__class__.__name__
+        self._dict = self.__dict__.copy()
+        self._dict["id"] = self.id
+        self._dict["created_at"] = self.created_at.isoformat()
+        self._dict["updated_at"] = self.updated_at.isoformat()
+        self._dict["__class__"] = self.__class__.__name__
 
-        return dict(self.__dict__)
-
-
-if __name__ == "__main__":
-    main()
+        return self._dict
