@@ -31,7 +31,6 @@ class FileStorage:
         """
         serializes __objects to the JSON file (path: __file_path)
         """
-        from models import storage
         serializes_objects = {}
         for key, obj in self.__objects.items():
             serializes_objects[key] = obj.to_dict()
