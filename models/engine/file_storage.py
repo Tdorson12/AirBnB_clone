@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import json
+from models.user import User
 
 
 class FileStorage:
@@ -49,8 +50,16 @@ class FileStorage:
             with open(self.__file_path, 'r', encoding='utf-8') as file:
                 loaded_objects = json.load(file)
                 for key, value in loaded_objects.items():
-                    value = eval(value["__class__"])(**value)
-                    self.__objects[key] = value
+                    class_name = value["__class__"]
+                    if class_name == "BaseModel":
+                        loaded_instance = BaseModel(**value)
+                    elif class_name == "User":
+                        loaded_instance = User(**value)
+                    else:
+                        continue
+                    self.__objects[key] = loaded_instance
+                    #value = eval(value["__class__"])(**value)
+                    #self.__objects[key] = value
         except FileNotFoundError:
             pass
 

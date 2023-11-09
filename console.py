@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 
 import cmd
-from models import storage
-import models
+#from models import storage
+#import models
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
