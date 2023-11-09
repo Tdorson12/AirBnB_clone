@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 
 import cmd
-#from models import storage
-#import models
+import models
 from models.base_model import BaseModel
 from models.user import User
 

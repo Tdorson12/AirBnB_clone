@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import json
-from models.user import User
+import models
 
 
 class FileStorage:
@@ -45,6 +45,7 @@ class FileStorage:
         (only if the JSON file (__file_path) exists; otherwise, do nothing.
         If the file doesn’t exist, no exception should be raised)
         """
+        from models.user import User
         from models.base_model import BaseModel
         try:
             with open(self.__file_path, 'r', encoding='utf-8') as file:
@@ -58,8 +59,6 @@ class FileStorage:
                     else:
                         continue
                     self.__objects[key] = loaded_instance
-                    #value = eval(value["__class__"])(**value)
-                    #self.__objects[key] = value
         except FileNotFoundError:
             pass
 
