@@ -4,6 +4,8 @@ import cmd
 import models
 from models.base_model import BaseModel
 from models.user import User
+from models import storage
+from shlex import split
 
 
 class HBNBCommand(cmd.Cmd):
@@ -20,7 +22,7 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
-    _classes = ["BaseModel"]
+    _classes = ["BaseModel", "User"]
 
     def do_EOF(self, line):
         """
@@ -115,12 +117,15 @@ class HBNBCommand(cmd.Cmd):
         Usage: all <class_name> or all
         """
         all_objects = storage.all()
-        if line not in self._classes:
+        arg = split(line)
+        if len(arg) >= 1 and  arg[0] not in self._classes:
             print("** class doesn't exist **")
         else:
             result = []
             for obj_key, obj in all_objects.items():
-                if not line or obj_key.startswith(line + "."):
+                if len(arg) > 1 and arg[0] in self._classes:
+                    result.append(str(obj))
+                elif len(arg) == 0:
                     result.append(str(obj))
 
             print(result)
