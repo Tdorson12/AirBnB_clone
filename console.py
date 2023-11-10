@@ -119,7 +119,7 @@ class HBNBCommand(cmd.Cmd):
         Prints all string representation of all instances
         based or not on the class name
 
-        Usage: all <class_name> or all
+        Usage: all [class_name]
         """
         all_objects = storage.all()
         arg = split(line)
