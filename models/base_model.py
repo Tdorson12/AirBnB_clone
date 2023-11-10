@@ -31,11 +31,11 @@ class BaseModel:
                if kwargs is empty generate the foll
             """
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.utcnow()
+            self.created_at = datetime.now()
             """
                 Set update_at with the value of created_at
             """
-            self.updated_at = datetime.utcnow()
+            self.updated_at = datetime.now()
             """
             if it’s a new instance (not from a dictionary representation)
             add a call to the method new(self) on storage
@@ -52,7 +52,7 @@ class BaseModel:
         """
         Update the updated_at to the current datetime
         """
-        updated_at = datetime.utcnow()
+        updated_at = datetime.now()
         self.updated_at = updated_at
         """ call save(self) method of storage """
         storage.save()
@@ -61,10 +61,9 @@ class BaseModel:
         """
         Return dictionary representation of BaseModel class.
         """
-        self._dict = self.__dict__.copy()
-        self._dict["id"] = self.id
-        self._dict["created_at"] = self.created_at.isoformat()
-        self._dict["updated_at"] = self.updated_at.isoformat()
-        self._dict["__class__"] = self.__class__.__name__
+        sel_dict = dict(self.__dict__)
+        sel_dict["__class__"] = type(self).__name__
+        sel_dict["created_at"] = sel_dict["created_at"].isoformat()
+        sel_dict["updated_at"] = sel_dict["updated_at"].isoformat()
 
-        return self._dict
+        return sel_dict

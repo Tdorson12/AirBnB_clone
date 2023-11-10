@@ -6,6 +6,11 @@ from models.base_model import BaseModel
 from models.user import User
 from models import storage
 from shlex import split
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -22,7 +27,7 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
-    _classes = ["BaseModel", "User"]
+    _classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
 
     def do_EOF(self, line):
         """
@@ -118,17 +123,19 @@ class HBNBCommand(cmd.Cmd):
         """
         all_objects = storage.all()
         arg = split(line)
-        if len(arg) >= 1 and  arg[0] not in self._classes:
-            print("** class doesn't exist **")
+        results = []
+        if len(arg) >= 1:
+            if arg[0]  in self._classes:
+                for key, obj in all_objects.items():
+                    if key.startswith(arg[0]):
+                        results.append(obj.__str__())
+                print(results)
+            else:
+                print("** class doesn't exist **")
         else:
-            result = []
-            for obj_key, obj in all_objects.items():
-                if len(arg) > 1 and arg[0] in self._classes:
-                    result.append(str(obj))
-                elif len(arg) == 0:
-                    result.append(str(obj))
-
-            print(result)
+            for obj in all_objects.values():
+                results.append(obj.__str__())
+            print(results)
 
     def do_update(self, line):
         """
