@@ -2,12 +2,19 @@
 
 from models.base_model import BaseModel
 
-
 class State(BaseModel):
     """
-    Initializing State
+    Initializing the class
 
-    Parameter:
-    name(str) - name of the state
+    Parameters:
+    name: string - empty string
     """
-    name = ""
+    name: str = ""
+
+    def to_dict(self):
+        """
+        Return dictionary representation of State class.
+        """
+        state_dict = super().to_dict()
+        state_dict['name'] = self.name
+        return state_dict

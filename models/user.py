@@ -2,18 +2,23 @@
 
 from models.base_model import BaseModel
 
-
 class User(BaseModel):
     """
-    Initializes a new User instance.
-
-    Parameters:
-    - email (str): User's email (default is an empty string).
-    - password (str): User's password (default is an empty string).
-    - first_name (str): User's first name (default is an empty string).
-    - last_name (str): User's last name (default is an empty string).
+    User class inherits from BaseModel
     """
-    email = ""
-    password = ""
-    first_name = ""
-    last_name = ""
+    email: str = ""
+    password: str = ""
+    first_name: str = ""
+    last_name: str = ""
+
+    def to_dict(self):
+        """
+        Return dictionary representation of User class.
+        """
+        user_dict = super().to_dict()
+        user_dict['email'] = self.email
+        user_dict['password'] = self.password
+        user_dict['first_name'] = self.first_name
+        user_dict['last_name'] = self.last_name
+        return user_dict
+
