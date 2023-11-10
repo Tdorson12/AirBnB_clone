@@ -60,8 +60,8 @@ The project is organized into the following directories and files:
 
 **models:** Contains the implementation of the various classes used in the project, such as *BaseModel, User, State, City, Amenity, Place,* and *Review*.
 
-*tests:* Includes unit tests for the project. The test_models directory contains test files for the classes in the models directory.
+**tests:** Includes unit tests for the project. The test_models directory contains test files for the classes in the models directory.
 
-*console.py:* The main file for the command-line interface. It provides an interactive shell for managing AirBnB objects.
+**console.py:** The main file for the command-line interface. It provides an interactive shell for managing AirBnB objects.
 
-*file_storage.py:* Implements the serialization and deserialization of instances to a JSON file.
+**file_storage.py:** Implements the serialization and deserialization of instances to a JSON file.
