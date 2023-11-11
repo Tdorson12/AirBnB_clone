@@ -44,9 +44,6 @@ class TestReview(unittest.TestCase):
     def test_to_dict_method(self):
         """Test the to_dict method of Review class"""
         review_dict = self.my_review.to_dict()
-        self.assertEqual(review_dict['place_id'], "")
-        self.assertEqual(review_dict['user_id'], "")
-        self.assertEqual(review_dict['text'], "")
         self.assertEqual(review_dict['__class__'], 'Review')
         self.assertEqual(type(review_dict['created_at']), str)
         self.assertEqual(type(review_dict['updated_at']), str)

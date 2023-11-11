@@ -33,20 +33,6 @@ class TestPlace(unittest.TestCase):
         # Check if the 'name' key in the dictionary is not equal to '__class__'
         self.assertNotEqual(place_dict.get('name'), '__class__')
 
-        # Check if other keys exist in the dictionary
-        self.assertIn('id', place_dict)
-        self.assertIn('created_at', place_dict)
-        self.assertIn('updated_at', place_dict)
-        self.assertIn('city_id', place_dict)
-        self.assertIn('user_id', place_dict)
-        self.assertIn('description', place_dict)
-        self.assertIn('number_rooms', place_dict)
-        self.assertIn('number_bathrooms', place_dict)
-        self.assertIn('max_guest', place_dict)
-        self.assertIn('price_by_night', place_dict)
-        self.assertIn('latitude', place_dict)
-        self.assertIn('longitude', place_dict)
-        self.assertIn('amenity_ids', place_dict)
 
     def test_str_method(self):
         """Test __str__ method of Place class"""

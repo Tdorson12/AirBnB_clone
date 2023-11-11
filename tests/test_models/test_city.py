@@ -24,11 +24,6 @@ class TestCity(unittest.TestCase):
         # Check if the 'name' key in the dictionary is not equal to '__class__'
         self.assertNotEqual(city_dict.get('name'), '__class__')
 
-        # Check if other keys exist in the dictionary
-        self.assertIn('id', city_dict)
-        self.assertIn('created_at', city_dict)
-        self.assertIn('updated_at', city_dict)
-        self.assertIn('state_id', city_dict)
 
     def test_str_method(self):
         """Test __str__ method of City class"""

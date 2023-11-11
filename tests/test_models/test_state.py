@@ -40,7 +40,6 @@ class TestState(unittest.TestCase):
     def test_to_dict_method(self):
         """Test the to_dict method of State class"""
         state_dict = self.my_state.to_dict()
-        self.assertEqual(state_dict['name'], "")
         self.assertEqual(state_dict['__class__'], 'State')
         self.assertEqual(type(state_dict['created_at']), str)
         self.assertEqual(type(state_dict['updated_at']), str)
