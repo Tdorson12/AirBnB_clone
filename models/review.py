@@ -14,13 +14,3 @@ class Review(BaseModel):
     place_id: str = ""
     user_id: str = ""
     text: str = ""
-
-    def to_dict(self):
-        """
-        Return dictionary representation of Review class.
-        """
-        review_dict = super().to_dict()
-        review_dict['place_id'] = self.place_id
-        review_dict['user_id'] = self.user_id
-        review_dict['text'] = self.text
-        return review_dict

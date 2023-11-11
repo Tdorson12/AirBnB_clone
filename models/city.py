@@ -12,12 +12,3 @@ class City(BaseModel):
     """
     state_id: str = ""
     name: str = ""
-
-    def to_dict(self):
-        """
-        Return dictionary representation of City class.
-        """
-        city_dict = super().to_dict()
-        city_dict['state_id'] = self.state_id
-        city_dict['name'] = self.name
-        return city_dict

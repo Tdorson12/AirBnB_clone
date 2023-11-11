@@ -10,12 +10,3 @@ class Amenity(BaseModel):
     name: string - empty string
     """
     name: str = ""
-
-    def to_dict(self):
-        """
-        Return dictionary representation of Amenity class.
-        """
-        amenity_dict = super().to_dict()
-        amenity_dict['name'] = self.name
-        return amenity_dict
-

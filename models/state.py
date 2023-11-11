@@ -10,11 +10,3 @@ class State(BaseModel):
     name: string - empty string
     """
     name: str = ""
-
-    def to_dict(self):
-        """
-        Return dictionary representation of State class.
-        """
-        state_dict = super().to_dict()
-        state_dict['name'] = self.name
-        return state_dict
