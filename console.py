@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         """EOF signal to exit the program
         """
-        print("")
+        print()
         return True
 
     def do_quit(self, line):
@@ -132,9 +132,8 @@ class HBNBCommand(cmd.Cmd):
             print(results)
 
     def do_update(self, line):
-        """Updates an instance based on the class name and id
-
-        Usage: update <class name> <id> <attribute name> "<attribute value>"
+        """Usage: update <class name> <id> <attribute name> "<attribute value>"
+        Updates an instance based on the class name and id
         """
         args = line.split(" ")
         if not args:
