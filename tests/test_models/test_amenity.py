@@ -9,6 +9,7 @@ from models.amenity import Amenity
 from datetime import datetime
 from models import storage
 
+
 class TestAmenity(unittest.TestCase):
     """
     Test cases for Amenity class
@@ -55,6 +56,6 @@ class TestAmenity(unittest.TestCase):
         self.assertEqual(amenity_dict['id'], my_amenity.id)
         self.assertEqual(amenity_dict['__class__'], 'Amenity')
 
+
 if __name__ == '__main__':
     unittest.main()
-

@@ -32,7 +32,6 @@ class TestHBNBCommand(unittest.TestCase):
                 HBNBCommand().cmdloop()
         self.assertIn("** instance id missing **", mock_stdout.getvalue())
 
-
     def test_update_command(self):
         """Test the update command in HBNBCommand class"""
         with patch('sys.stdin', StringIO('update BaseModel\n')):
@@ -40,13 +39,11 @@ class TestHBNBCommand(unittest.TestCase):
                 HBNBCommand().cmdloop()
         self.assertIn("** instance id missing **", mock_stdout.getvalue())
 
-
     def test_do_destroy(self):
         """Test the do_destroy method in HBNBCommand class"""
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             HBNBCommand().do_destroy("BaseModel")
         self.assertIn("** instance id missing **", mock_stdout.getvalue())
-
 
     def test_do_update(self):
         """Test the do_update method in HBNBCommand class"""
@@ -57,4 +54,3 @@ class TestHBNBCommand(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

@@ -24,7 +24,6 @@ class TestCity(unittest.TestCase):
         # Check if the 'name' key in the dictionary is not equal to '__class__'
         self.assertNotEqual(city_dict.get('name'), '__class__')
 
-
     def test_str_method(self):
         """Test __str__ method of City class"""
         my_city = City()
@@ -49,4 +48,3 @@ class TestCity(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

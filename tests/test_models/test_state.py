@@ -52,6 +52,6 @@ class TestState(unittest.TestCase):
         self.assertIn("'created_at':", string)
         self.assertIn("'updated_at':", string)
 
+
 if __name__ == '__main__':
     unittest.main()
-

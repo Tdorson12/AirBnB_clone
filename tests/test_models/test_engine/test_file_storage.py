@@ -86,6 +86,6 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn("User." + user_id, all_objects)
         self.assertIn("BaseModel." + base_model_id, all_objects)
 
+
 if __name__ == '__main__':
     unittest.main()
-

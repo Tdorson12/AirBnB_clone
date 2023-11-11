@@ -33,7 +33,6 @@ class TestPlace(unittest.TestCase):
         # Check if the 'name' key in the dictionary is not equal to '__class__'
         self.assertNotEqual(place_dict.get('name'), '__class__')
 
-
     def test_str_method(self):
         """Test __str__ method of Place class"""
         my_place = Place()
@@ -60,4 +59,3 @@ class TestPlace(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

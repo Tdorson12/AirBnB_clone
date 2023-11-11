@@ -5,6 +5,7 @@ from models.user import User
 from datetime import datetime
 from models import storage
 
+
 class TestUser(unittest.TestCase):
     """
     Test the User class
@@ -59,6 +60,6 @@ class TestUser(unittest.TestCase):
         """
         self.assertIsInstance(self.my_user.updated_at, datetime)
 
+
 if __name__ == '__main__':
     unittest.main()
-
