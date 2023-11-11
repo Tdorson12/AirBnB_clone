@@ -21,24 +21,6 @@ class HBNBCommand(cmd.Cmd):
             "City", "Amenity", "Place", "Review"
             ]
 
-
-    def do_quit(self, arg):
-        """Quit command to exit the program
-        """
-        return True
-
-    def do_EOF(self, arg):
-        """Exit the program
-        """
-        print()  # Print a newline before exiting
-        return True
-
-    def emptyline(self):
-        """Do nothing on an empty line
-        """
-        pass
-
-    '''
     def do_EOF(self, line):
         """EOF signal to exit the program
         """
@@ -54,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
         """Handle an empty line (do nothing)
         """
         pass
-'''
+
     def do_create(self, line):
         """Create a new instance of BaseModel and save it to the JSON file
 
@@ -139,8 +121,9 @@ class HBNBCommand(cmd.Cmd):
             print(results)
 
     def do_update(self, line):
-        """Usage: update <class name> <id> <attribute name> "<attribute value>"
-        Updates an instance based on the class name and id
+        """Updates an instance based on the class name and id
+
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
         args = line.split(" ")
         if not args:
