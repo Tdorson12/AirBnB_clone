@@ -2,6 +2,7 @@
 
 import json
 import models
+from collections import OrderedDict
 
 
 class FileStorage:
@@ -35,10 +36,11 @@ class FileStorage:
         serializes_objects = {}
         for key, obj in self.__objects.items():
             serializes_objects[key] = obj.to_dict()
+        json_str = json.dumps(serializes_objects)
 
         with open(self.__file_path, "w", encoding='utf-8') as file:
-            json.dump(serializes_objects, file)
-
+            file.write(json_str)
+    
     def reload(self):
         """
         Deserializes the JSON file to __objects
