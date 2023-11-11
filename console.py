@@ -14,17 +14,6 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """
-    Command interpreter for the HolbertonBnB project.
-
-    Attributes:
-    - prompt (str): The command prompt.
-
-    Methods:
-    - do_EOF: Exit the program gracefully on EOF.
-    - do_quit: Exit the program gracefully using the "quit" command.
-    - emptyline: Handle an empty line (do nothing).
-    """
 
     prompt = "(hbnb) "
     _classes = [
