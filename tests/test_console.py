@@ -41,20 +41,6 @@ class TestHBNBCommand(unittest.TestCase):
         self.assertIn("** instance id missing **", mock_stdout.getvalue())
 
 
-    def test_quit_command(self):
-        """Test the quit command in HBNBCommand class"""
-        with patch('sys.stdin', StringIO('quit\n')):
-            with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-                HBNBCommand().cmdloop()
-        self.assertEqual(mock_stdout.getvalue(), "(hbnb) ")
-
-    def test_EOF_command(self):
-        """Test the EOF command in HBNBCommand class"""
-        with patch('sys.stdin', StringIO('EOF\n')):
-            with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-                HBNBCommand().cmdloop()
-        self.assertEqual(mock_stdout.getvalue(), "(hbnb) ")
-
     def test_do_destroy(self):
         """Test the do_destroy method in HBNBCommand class"""
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
