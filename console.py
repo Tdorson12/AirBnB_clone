@@ -33,26 +33,23 @@ class HBNBCommand(cmd.Cmd):
             ]
 
     def do_EOF(self, line):
+        """EOF signal to exit the program
         """
-        Exit the program gracefully on EOF.
-        """
+        print("")
         return True
 
     def do_quit(self, line):
-        """
-        Quit command to exit the program
+        """Quit command to exit the program
         """
         return True
 
     def emptyline(self):
-        """
-        Handle an empty line (do nothing).
+        """Handle an empty line (do nothing)
         """
         pass
 
     def do_create(self, line):
-        """
-        Create a new instance of BaseModel and save it to the JSON file.
+        """Create a new instance of BaseModel and save it to the JSON file
 
         Usage: create <class_name>
         """
@@ -67,8 +64,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_show(self, line):
-        """
-        Show a string representation of an instance
+        """Show a string representation of an instance
 
         Usage: show <class_name> <id>
         """
@@ -91,8 +87,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** class doesn't exist **")
 
     def do_destroy(self, line):
-        """
-        Delete an instance base on the class name and id
+        """Delete an instance base on the class name and id
 
         Usage: destroy <class_name> <id>
         """
@@ -116,9 +111,7 @@ class HBNBCommand(cmd.Cmd):
                         print("** no instance found **")
 
     def do_all(self, line):
-        """
-        Prints all string representation of all instances
-        based or not on the class name
+        """Prints all string representation of all instances
 
         Usage: all [class_name]
         """
@@ -139,9 +132,7 @@ class HBNBCommand(cmd.Cmd):
             print(results)
 
     def do_update(self, line):
-        """
-        Updates an instance based on the class name and id
-        by adding or updating attribute
+        """Updates an instance based on the class name and id
 
         Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
