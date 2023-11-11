@@ -40,7 +40,7 @@ class FileStorage:
 
         with open(self.__file_path, "w", encoding='utf-8') as file:
             file.write(json_str)
-    
+
     def reload(self):
         """
         Deserializes the JSON file to __objects

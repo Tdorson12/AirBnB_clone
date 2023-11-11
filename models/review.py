@@ -2,6 +2,7 @@
 
 from models.base_model import BaseModel
 
+
 class Review(BaseModel):
     """
     Initializing the class
