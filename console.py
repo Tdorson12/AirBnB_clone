@@ -27,7 +27,10 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
-    _classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+    _classes = [
+            "BaseModel", "User", "State",
+            "City", "Amenity", "Place", "Review"
+            ]
 
     def do_EOF(self, line):
         """
@@ -125,7 +128,7 @@ class HBNBCommand(cmd.Cmd):
         arg = split(line)
         results = []
         if len(arg) >= 1:
-            if arg[0]  in self._classes:
+            if arg[0] in self._classes:
                 for key, obj in all_objects.items():
                     if key.startswith(arg[0]):
                         results.append(obj.__str__())
@@ -158,15 +161,15 @@ class HBNBCommand(cmd.Cmd):
                         if len(args) >= 3:
                             attribute_name = args[2].strip()
                             if len(args) >= 4:
-                                attribute_value_str = " ".join(args[3:]).strip('\"')
+                                at_value_str = " ".join(args[3:]).strip('\"')
                                 instance = all_object[instance_key]
 
                                 try:
-                                    attribute_value = eval(attribute_value_str)
+                                    at_value = eval(at_value_str)
                                 except (NameError, SyntaxError):
-                                    attribute_value = attribute_value_str
+                                    at_value = at_value_str
 
-                                setattr(instance, attribute_name, attribute_value)
+                                setattr(instance, attribute_name, at_value)
                                 instance.save()
                             else:
                                 print("** value missing **")
