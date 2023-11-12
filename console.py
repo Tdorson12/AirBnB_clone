@@ -24,47 +24,43 @@ class HBNBCommand(cmd.Cmd):
     methods = ["all", "show", "count", "update", "destroy"]
 
     def precmd(self, line):
-        """Customize commands"""
-        if line == "" or not line.endswith(")"):
+        """Implement custom commands"""
+
+        if line == '' or not line.endswith(')'):
             return line
 
         permit = 1
 
-        for _class in self._classes:
+        for clas in self._classes:
             for method in self.methods:
-                if line.startswith("{}{}(".format(_class, method)):
+                if line.startswith("{}.{}(".format(clas, method)):
                     permit = 0
-                    break
-
         if permit:
             return line
 
-        obj = ""
-        obj = line.replace("(", ".").replace(")", ".").split(".")
-        if obj[0] not in self._classes:
-            return " ".join(obj)
+        tmp = ''
+        for method in self.methods:
+            tmp = line.replace('(', '.').replace(')', '.').split('.')
+            if tmp[0] not in self._classes:
+                return ' '.join(tmp)
+            while tmp[-1] == '':
+                tmp.pop()
+            if len(tmp) < 2:
+                return line
+            if len(tmp) == 2:
+                tmp = '{} {}'.format(tmp[1], tmp[0])
+            else:
+                if "," in tmp[2]:
+                    sub_tmp = tmp[2].split(",")
+                    tmp = "{} {} {} {} {}".format(
+                            tmp[1], tmp[0], sub_tmp[0].strip('\"'),
+                            sub_tmp[1].replace('"', "").strip(), sub_tmp[2]
+                            )
+                else:
+                    tmp = '{} {} {}'.format(tmp[1], tmp[0], tmp[2].strip('\"'))
 
-        while obj[-1] == "":
-            obj.pop()
-
-        if len(obj) < 2:
-            return line
-
-        if len(obj) == 2:
-            obj = "{} {}".format(obj[1], obj[0])
-        else:
-            try:
-                sub_obj = obj[3].split(",")
-                if len(sub_obj) == 3:
-                    obj = "{} {} {} {} {}".format(obj[1], obj[0], sub_obj[0], sub_obj[1], sub_obj[2])
-            except ValueError:
-                obj = "{} {} {}".format(obj[1], obj[0], obj[3])
-
-        for method in methods:
-            if obj.startswith(method):
-                return obj
-
-        return ""
+            if tmp.startswith(method):
+                return tmp
 
     def do_EOF(self, line):
         """EOF signal to exit the program
@@ -183,7 +179,9 @@ class HBNBCommand(cmd.Cmd):
                         if len(args) >= 3:
                             attribute_name = args[2].strip()
                             if len(args) >= 4:
-                                at_value_str = " ".join(args[3:]).strip('\"')
+                                at_value_str = " ".join(args[3:]).replace(
+                                        '"', ""
+                                        ).strip()
                                 instance = all_object[instance_key]
 
                                 try:
