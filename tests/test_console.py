@@ -1,55 +1,75 @@
 #!/usr/bin/python3
-"""
-Unittest for HBNBCommand class
-"""
 
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 from io import StringIO
 from console import HBNBCommand
 
 
 class TestHBNBCommand(unittest.TestCase):
-    """Test cases for HBNBCommand class"""
+    def setUp(self):
+        self.hbnb_command = HBNBCommand()
 
-    @patch('sys.stdout', new_callable=StringIO)
-    def assert_stdout(self, expected_output, mock_stdout):
-        """Assert the output to stdout"""
-        with self.subTest():
-            self.assertEqual(mock_stdout.getvalue(), expected_output)
-
-    def test_show_command(self):
-        """Test the show command in HBNBCommand class"""
-        with patch('sys.stdin', StringIO('show BaseModel\n')):
-            with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-                HBNBCommand().cmdloop()
-        self.assertIn("** instance id missing **", mock_stdout.getvalue())
-
-    def test_destroy_command(self):
-        """Test the destroy command in HBNBCommand class"""
-        with patch('sys.stdin', StringIO('destroy BaseModel\n')):
-            with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-                HBNBCommand().cmdloop()
-        self.assertIn("** instance id missing **", mock_stdout.getvalue())
-
-    def test_update_command(self):
-        """Test the update command in HBNBCommand class"""
-        with patch('sys.stdin', StringIO('update BaseModel\n')):
-            with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-                HBNBCommand().cmdloop()
-        self.assertIn("** instance id missing **", mock_stdout.getvalue())
-
-    def test_do_destroy(self):
-        """Test the do_destroy method in HBNBCommand class"""
+    def test_show_missing_class(self):
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-            HBNBCommand().do_destroy("BaseModel")
-        self.assertIn("** instance id missing **", mock_stdout.getvalue())
+            self.hbnb_command.do_show("")
+            output = mock_stdout.getvalue().strip()
+            self.assertIn("** class name missing **", output)
 
-    def test_do_update(self):
-        """Test the do_update method in HBNBCommand class"""
+    def test_show_missing_id(self):
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-            HBNBCommand().do_update("BaseModel")
-        self.assertIn("** instance id missing **", mock_stdout.getvalue())
+            self.hbnb_command.do_show("BaseModel")
+            output = mock_stdout.getvalue().strip()
+            self.assertIn("** instance id missing **", output)
+
+    def test_show_instance_not_found(self):
+        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+            self.hbnb_command.do_show("BaseModel 123")
+            output = mock_stdout.getvalue().strip()
+            self.assertIn("** no instance found **", output)
+
+    def test_precmd_empty_line(self):
+        line = ''
+        result = self.hbnb_command.precmd(line)
+        self.assertEqual(result, line)
+
+    def test_precmd_valid_command(self):
+        line = 'BaseModel.show(123)'
+        result = self.hbnb_command.precmd(line)
+        self.assertEqual(result, "show BaseModel 123")
+
+    def test_precmd_invalid_command(self):
+        line = 'InvalidClass.invalid_method(123)'
+        result = self.hbnb_command.precmd(line)
+        self.assertEqual(result, line)
+
+    def test_do_destroy_missing_class(self):
+        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+            self.hbnb_command.do_destroy("")
+            output = mock_stdout.getvalue().strip()
+            self.assertIn("** class name missing **", output)
+
+    def test_do_destroy_missing_id(self):
+        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+            self.hbnb_command.do_destroy("BaseModel")
+            output = mock_stdout.getvalue().strip()
+            self.assertIn("** instance id missing **", output)
+
+    def test_do_destroy_class_not_exist(self):
+        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+            self.hbnb_command.do_destroy("InvalidClass 123")
+            output = mock_stdout.getvalue().strip()
+            self.assertIn("** class doesn't exist **", output)
+
+    def test_emptyline(self):
+        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+            self.hbnb_command.emptyline()
+            output = mock_stdout.getvalue().strip()
+            self.assertEqual(output, "")
+
+    def test_quit(self):
+        result = self.hbnb_command.do_quit("")
+        self.assertTrue(result)
 
 
 if __name__ == '__main__':
