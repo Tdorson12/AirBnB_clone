@@ -21,6 +21,50 @@ class HBNBCommand(cmd.Cmd):
             "BaseModel", "User", "State",
             "City", "Amenity", "Place", "Review"
             ]
+    methods = ["all", "show", "count", "update", "destroy"]
+
+    def precmd(self, line):
+        """Customize commands"""
+        if line == "" or not line.endswith(")"):
+            return line
+
+        permit = 1
+
+        for _class in self._classes:
+            for method in self.methods:
+                if line.startswith("{}{}(".format(_class, method)):
+                    permit = 0
+                    break
+
+        if permit:
+            return line
+
+        obj = ""
+        obj = line.replace("(", ".").replace(")", ".").split(".")
+        if obj[0] not in self._classes:
+            return " ".join(obj)
+
+        while obj[-1] == "":
+            obj.pop()
+
+        if len(obj) < 2:
+            return line
+
+        if len(obj) == 2:
+            obj = "{} {}".format(obj[1], obj[0])
+        else:
+            try:
+                sub_obj = obj[3].split(",")
+                if len(sub_obj) == 3:
+                    obj = "{} {} {} {} {}".format(obj[1], obj[0], sub_obj[0], sub_obj[1], sub_obj[2])
+            except ValueError:
+                obj = "{} {} {}".format(obj[1], obj[0], obj[3])
+
+        for method in methods:
+            if obj.startswith(method):
+                return obj
+
+        return ""
 
     def do_EOF(self, line):
         """EOF signal to exit the program
