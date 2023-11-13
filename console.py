@@ -166,7 +166,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
         args = line.split(" ")
-        if not args:
+        if not args[0]:
             print("** class name missing **")
         else:
             class_name = args[0].strip()
