@@ -52,8 +52,7 @@ class BaseModel:
         """
         Update the updated_at to the current datetime
         """
-        updated_at = datetime.now()
-        self.updated_at = updated_at
+        self.updated_at = datetime.now()
         """ call save(self) method of storage """
         storage.save()
 
