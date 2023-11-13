@@ -21,7 +21,7 @@ class HBNBCommand(cmd.Cmd):
             "BaseModel", "User", "State",
             "City", "Amenity", "Place", "Review"
             ]
-    methods = ["all", "show", "count", "update", "destroy"]
+    methods = ["all", "show", "count", "update", "destroy", "count"]
 
     def precmd(self, line):
         """Implement custom commands"""
@@ -159,6 +159,22 @@ class HBNBCommand(cmd.Cmd):
             for obj in all_objects.values():
                 results.append(obj.__str__())
             print(results)
+
+    def do_count(self, line):
+        """Prints number of string representsation of all instances
+
+        Usage: count class_name
+        """
+        all_objects = storage.all()
+        count = 0
+        arg = split(line)
+        if arg[0] in self._classes:
+            for key, obj in all_objects.items():
+                if key.startswith(arg[0]):
+                    count += 1
+            print(count)
+        else:
+            print("** class doesn't exits **")
 
     def do_update(self, line):
         """Updates an instance based on the class name and id
