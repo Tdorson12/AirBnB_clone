@@ -8,16 +8,16 @@ class User(BaseModel):
     User class inherits from BaseModel
     """
 
-    self.email = ""
-    self.password = ""
-    self.first_name = ""
-    self.last_name = ""
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""
 
     def to_dict(self):
         """
         Return dictionary representation of User class.
         """
-        #user_dict = super().to_dict()
+        user_dict = super().to_dict()
         user_dict['email'] = self.email
         user_dict['password'] = self.password
         user_dict['first_name'] = self.first_name
