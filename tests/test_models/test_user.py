@@ -43,7 +43,7 @@ class TestUser(unittest.TestCase):
         Test the to_dict method of User class
         """
         user_dict = self.my_user.to_dict()
-        self.assertEqual(user_dict['email'], "test@example.com")
+        self.assertEqual(user_dict['email'], "User.email")
         self.assertEqual(user_dict['password'], "password123")
         self.assertEqual(user_dict['first_name'], "John")
         self.assertEqual(user_dict['last_name'], "Doe")

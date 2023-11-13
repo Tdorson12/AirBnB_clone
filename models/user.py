@@ -19,7 +19,7 @@ class User(BaseModel):
         """
         user_dict = super().to_dict()
         user_dict['email'] = 'User.email'
-        user_dict['password'] = 'User.password'
-        user_dict['first_name'] = 'User.first_name'
-        user_dict['last_name'] = 'User.last_name'
+        user_dict['password'] = self.password
+        user_dict['first_name'] = self.first_name
+        user_dict['last_name'] = self.last_name
         return user_dict
