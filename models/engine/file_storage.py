@@ -9,12 +9,8 @@ class FileStorage:
     """
     a class taht serializes and deserializes instances to a JSON file
     """
-    def __init__(self):
-        """
-        Initialization of the class FileStorage
-        """
-        self.__file_path = "file.json"
-        self.__objects = {}
+    __file_path = "file.json"
+    __objects = {}
 
     def all(self):
         """
