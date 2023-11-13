@@ -8,15 +8,10 @@ class User(BaseModel):
     User class inherits from BaseModel
     """
 
-    def __init__(self, *args, **kwargs):
-        """
-        Initialize User instance.
-        """
-        super().__init__(*args, **kwargs)
-        self.email = ""
-        self.password = ""
-        self.first_name = ""
-        self.last_name = ""
+    self.email = ""
+    self.password = ""
+    self.first_name = ""
+    self.last_name = ""
 
     def to_dict(self):
         """
