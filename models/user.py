@@ -17,7 +17,7 @@ class User(BaseModel):
         """
         Return dictionary representation of User class.
         """
-        user_dict = super().to_dict()
+        #user_dict = super().to_dict()
         user_dict['email'] = self.email
         user_dict['password'] = self.password
         user_dict['first_name'] = self.first_name
